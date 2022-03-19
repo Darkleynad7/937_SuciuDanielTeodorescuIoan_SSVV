@@ -6,12 +6,14 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
+import org.xml.sax.InputSource;
 
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.transform.Transformer;
 import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
+import java.io.StringReader;
 
 
 public abstract class AbstractXMLRepository<ID, E extends HasID<ID>> extends AbstractCrudRepository<ID, E> implements FileRepository<ID, E> {
@@ -39,7 +41,7 @@ public abstract class AbstractXMLRepository<ID, E extends HasID<ID>> extends Abs
             Document document = DocumentBuilderFactory
                     .newInstance()
                     .newDocumentBuilder()
-                    .parse(this.filename);
+                    .parse(filename);
 
             Element root = document.getDocumentElement();
             NodeList children = root.getChildNodes();
