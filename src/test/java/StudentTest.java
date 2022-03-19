@@ -42,7 +42,7 @@ public class StudentTest {
 
     @Test
     @Order(2)
-    public void testAddStudentIdExists(){
+    public void TC_2(){
         //Student student1 = new Student("1", "1", 1, "1");
         //Student student2 = new Student("1", "2", 2, "2");
         //studentXMLRepo.save(student1);
