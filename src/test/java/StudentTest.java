@@ -438,7 +438,7 @@ public class StudentTest {
         System.out.println("BVA Test 17 completed!\n");
     }
 
-    @Order(28)
+    @Order(33)
     @Test
     public void testAddStudentGrupaIs1(){
         Student student1 = new Student("a", "a", 1, "a");
@@ -447,7 +447,7 @@ public class StudentTest {
         System.out.println("BVA Test 18 completed!\n");
     }
 
-    @Order(29)
+    @Order(34)
     @Test
     public void testAddStudentGrupaIs1000(){
         Student student1 = new Student("a", "a", 1000, "a");
@@ -456,7 +456,7 @@ public class StudentTest {
         System.out.println("BVA Test 19 completed!\n");
     }
 
-    @Order(30)
+    @Order(35)
     @Test
     public void testAddStudentGrupaIs1001(){
         Student student1 = new Student("a", "a", 1001, "a");
