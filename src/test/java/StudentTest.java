@@ -73,8 +73,9 @@ public class StudentTest {
         file.delete();
     }
 
-    @Order(1)
+
     @Test
+    @Order(1)
     public void testAddStudentIdStringNotNull(){
         Student student1 = new Student("a", "a", 2, "a");
         assert(service.addStudent(student1) == null);
@@ -82,8 +83,9 @@ public class StudentTest {
         System.out.println("EC Test 1 completed!");
     }
 
-    @Order(2)
+
     @Test
+    @Order(2)
     public void testAddStudentIdStringNull(){
         Student student1 = new Student(null, "a", 2, "a");
         try{
@@ -96,8 +98,8 @@ public class StudentTest {
         System.out.println("EC Test 2 completed!");
     }
 
-    @Order(3)
     @Test
+    @Order(3)
     public void testAddStudentIdStringEmpty(){
         Student student1 = new Student("", "a", 2, "a");
         try{
@@ -110,8 +112,8 @@ public class StudentTest {
         System.out.println("EC Test 3 completed!");
     }
 
-    @Order(4)
     @Test
+    @Order(4)
     public void testAddStudentNumeStringNotNull(){
         Student student1 = new Student("a", "a", 2, "a");
         assert(service.addStudent(student1) == null);
@@ -119,8 +121,8 @@ public class StudentTest {
         System.out.println("EC Test 4 completed!");
     }
 
-    @Order(5)
     @Test
+    @Order(5)
     public void testAddStudentNumeStringNull(){
         Student student1 = new Student("a", null, 2, "a");
         try{
@@ -133,8 +135,8 @@ public class StudentTest {
         System.out.println("EC Test 5 completed!");
     }
 
-    @Order(6)
     @Test
+    @Order(6)
     public void testAddStudentNumeStringEmpty(){
         Student student1 = new Student("a", "", 2, "a");
         try{
@@ -147,8 +149,8 @@ public class StudentTest {
         System.out.println("EC Test 6 completed!");
     }
 
-    @Order(7)
     @Test
+    @Order(7)
     public void testAddStudentGrupaIntegerPositive(){
         Student student1 = new Student("a", "a", 0, "a");
         assert(service.addStudent(student1) == null);
@@ -156,8 +158,8 @@ public class StudentTest {
         System.out.println("EC Test 7 completed!");
     }
 
-    @Order(8)
     @Test
+    @Order(8)
     public void testAddStudentGrupaIntegerNegative(){
         Student student1 = new Student("a", "a", -2, "a");
         try{
@@ -170,8 +172,8 @@ public class StudentTest {
         System.out.println("EC Test 8 completed!");
     }
 
-    @Order(9)
     @Test
+    @Order(9)
     public void testAddStudentEmailStringNotNull(){
         Student student1 = new Student("a", "a", 2, "a");
         assert(service.addStudent(student1) == null);
@@ -179,8 +181,8 @@ public class StudentTest {
         System.out.println("EC Test 9 completed!");
     }
 
-    @Order(10)
     @Test
+    @Order(10)
     public void testAddStudentEmailStringNull(){
         Student student1 = new Student("a", "a", 2, null);
         try{
@@ -193,8 +195,8 @@ public class StudentTest {
         System.out.println("EC Test 10 completed!");
     }
 
-    @Order(11)
     @Test
+    @Order(11)
     public void testAddStudentEmailStringEmpty(){
         Student student1 = new Student("a", "a", 2, "");
         try{
@@ -207,8 +209,8 @@ public class StudentTest {
         System.out.println("EC Test 11 completed!");
     }
 
-    @Order(12)
     @Test
+    @Order(12)
     public void testAddStudentIdUnique(){
         Student student1 = new Student("a", "a", 2, "a");
         assert(studentXMLRepo.save(student1) == null);
@@ -222,7 +224,12 @@ public class StudentTest {
         Student student1 = new Student("a", "a", 2, "a");
         Student student2 = new Student("a", "b", 2, "2");
         studentXMLRepo.save(student1);
-        assert(studentXMLRepo.save(student2).equals(student2));
+        try{
+            studentXMLRepo.save(student2);
+        }
+        catch (ValidationException v){
+            assert(v.getMessage().equals("Existent ID!"));
+        }
         studentXMLRepo.delete("a");
         System.out.println("EC Test 13 completed!\n");
     }
