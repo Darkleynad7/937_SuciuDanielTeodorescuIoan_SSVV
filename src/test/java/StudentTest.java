@@ -285,26 +285,32 @@ public class StudentTest {
 
     @Order(19)
     @Test
-    public void testAddStudentIdLengthOf100(){
-        char[] a = new char[100];
-        Arrays.fill(a, 'a');
-        Student student1 = new Student(new String(a), "a", 2, "a");
-        assert(service.addStudent(student1) == null);
-        studentXMLRepo.delete(new String(a));
+    public void testAddStudentIdLengthOfMaxStrLengthMinusOne(){
+        try {
+            char[] a = new char[Integer.MAX_VALUE - 1];
+            Arrays.fill(a, 'a');
+            Student student1 = new Student(new String(a), "a", 2, "a");
+            assert(service.addStudent(student1) == null);
+            studentXMLRepo.delete(new String(a));
+        }
+        catch (OutOfMemoryError o){
+            assert(true);
+        }
         System.out.println("BVA Test 4 completed!\n");
     }
 
     @Order(20)
     @Test
-    public void testAddStudentIdLengthOf101(){
-        char[] a = new char[101];
-        Arrays.fill(a, 'a');
-        Student student1 = new Student(new String(a), "a", 2, "a");
-        try{
-            studentXMLRepo.save(student1);
+    public void testAddStudentIdLengthOfMaxStrLength(){
+        try {
+            char[] a = new char[Integer.MAX_VALUE];
+            Arrays.fill(a, 'a');
+            Student student1 = new Student(new String(a), "a", 2, "a");
+            assert(service.addStudent(student1) == null);
+            studentXMLRepo.delete(new String(a));
         }
-        catch (ValidationException v){
-            assert (v.getMessage().equals("Id exceeds size!"));
+        catch (OutOfMemoryError o){
+            assert(true);
         }
         System.out.println("BVA Test 5 completed!\n");
     }
@@ -342,26 +348,32 @@ public class StudentTest {
 
     @Order(24)
     @Test
-    public void testAddStudentNumeLengthOf100(){
-        char[] a = new char[100];
-        Arrays.fill(a, 'a');
-        Student student1 = new Student("a", new String(a), 2, "a");
-        assert(service.addStudent(student1) == null);
-        studentXMLRepo.delete("a");
+    public void testAddStudentNumeLengthOfMaxStrLengthMinusOne(){
+        try{
+            char[] a = new char[Integer.MAX_VALUE - 1];
+            Arrays.fill(a, 'a');
+            Student student1 = new Student("a", new String(a), 2, "a");
+            assert(service.addStudent(student1) == null);
+            studentXMLRepo.delete("a");
+        }
+        catch (OutOfMemoryError o){
+            assert(true);
+        }
         System.out.println("BVA Test 9 completed!\n");
     }
 
     @Order(25)
     @Test
-    public void testAddStudentNumeLengthOf101(){
-        char[] a = new char[101];
-        Arrays.fill(a, 'a');
-        Student student1 = new Student("a", new String(a), 2, "a");
+    public void testAddStudentNumeLengthOfMaxStrLength(){
         try{
-            studentXMLRepo.save(student1);
+            char[] a = new char[Integer.MAX_VALUE];
+            Arrays.fill(a, 'a');
+            Student student1 = new Student("a", new String(a), 2, "a");
+            assert(service.addStudent(student1) == null);
+            studentXMLRepo.delete("a");
         }
-        catch (ValidationException v){
-            assert (v.getMessage().equals("Nume exceeds size!"));
+        catch (OutOfMemoryError o){
+            assert(true);
         }
         System.out.println("BVA Test 10 completed!\n");
     }
@@ -399,26 +411,33 @@ public class StudentTest {
 
     @Order(29)
     @Test
-    public void testAddStudentEmailLengthOf100(){
-        char[] a = new char[100];
-        Arrays.fill(a, 'a');
-        Student student1 = new Student("a", "a", 2, new String(a));
-        assert(service.addStudent(student1) == null);
-        studentXMLRepo.delete("a");
+    public void testAddStudentEmailLengthOfMaxStrLengthMinusOne(){
+        try{
+            char[] a = new char[Integer.MAX_VALUE - 1];
+            Arrays.fill(a, 'a');
+            Student student1 = new Student("a", "a", 2, new String(a));
+            assert(service.addStudent(student1) == null);
+            studentXMLRepo.delete("a");
+        }
+        catch (OutOfMemoryError o){
+            assert(true);
+        }
+
         System.out.println("BVA Test 14 completed!\n");
     }
 
     @Order(30)
     @Test
-    public void testAddStudentEmailLengthOf101(){
-        char[] a = new char[101];
-        Arrays.fill(a, 'a');
-        Student student1 = new Student("a", "a", 2, new String(a));
+    public void testAddStudentEmailLengthOfMaxStrLength(){
         try{
-            studentXMLRepo.save(student1);
+            char[] a = new char[Integer.MAX_VALUE];
+            Arrays.fill(a, 'a');
+            Student student1 = new Student("a", "a", 2, new String(a));
+            assert(service.addStudent(student1) == null);
+            studentXMLRepo.delete("a");
         }
-        catch (ValidationException v){
-            assert (v.getMessage().equals("Email exceeds size!"));
+        catch (OutOfMemoryError o){
+            assert(true);
         }
         System.out.println("BVA Test 15 completed!\n");
     }
@@ -456,8 +475,8 @@ public class StudentTest {
 
     @Order(34)
     @Test
-    public void testAddStudentGrupaIs1000(){
-        Student student1 = new Student("a", "a", 1000, "a");
+    public void testAddStudentGrupaIsMaxIntSizeMinusOne(){
+        Student student1 = new Student("a", "a", Integer.MAX_VALUE - 1, "a");
         assert(service.addStudent(student1) == null);
         studentXMLRepo.delete("a");
         System.out.println("BVA Test 19 completed!\n");
@@ -465,14 +484,10 @@ public class StudentTest {
 
     @Order(35)
     @Test
-    public void testAddStudentGrupaIs1001(){
-        Student student1 = new Student("a", "a", 1001, "a");
-        try{
-            studentXMLRepo.save(student1);
-        }
-        catch (ValidationException v){
-            assert (v.getMessage().equals("Grupa exceeds size!"));
-        }
+    public void testAddStudentGrupaIsMaxIntSize(){
+        Student student1 = new Student("a", "a", Integer.MAX_VALUE, "a");
+        assert(service.addStudent(student1) == null);
+        studentXMLRepo.delete("a");
         System.out.println("BVA Test 20 completed!\n");
     }
 }
