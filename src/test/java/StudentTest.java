@@ -113,15 +113,6 @@ public class StudentTest {
     }
 
     @Test
-    @Order(4)
-    public void testAddStudentNumeStringNotNull(){
-        Student student1 = new Student("a", "a", 2, "a");
-        assert(service.addStudent(student1) == null);
-        studentXMLRepo.delete("a");
-        System.out.println("EC Test 4 completed!");
-    }
-
-    @Test
     @Order(5)
     public void testAddStudentNumeStringNull(){
         Student student1 = new Student("a", null, 2, "a");
@@ -132,7 +123,7 @@ public class StudentTest {
         catch (ValidationException v){
             assert(v.getMessage().equals("Nume null!"));
         }
-        System.out.println("EC Test 5 completed!");
+        System.out.println("EC Test 4 completed!");
     }
 
     @Test
@@ -146,16 +137,7 @@ public class StudentTest {
         catch (ValidationException v){
             assert(v.getMessage().equals("Nume empty!"));
         }
-        System.out.println("EC Test 6 completed!");
-    }
-
-    @Test
-    @Order(7)
-    public void testAddStudentGrupaIntegerPositive(){
-        Student student1 = new Student("a", "a", 0, "a");
-        assert(service.addStudent(student1) == null);
-        studentXMLRepo.delete("a");
-        System.out.println("EC Test 7 completed!");
+        System.out.println("EC Test 5 completed!");
     }
 
     @Test
@@ -169,16 +151,7 @@ public class StudentTest {
         catch (ValidationException v){
             assert(v.getMessage().equals("Grupa negativa!"));
         }
-        System.out.println("EC Test 8 completed!");
-    }
-
-    @Test
-    @Order(9)
-    public void testAddStudentEmailStringNotNull(){
-        Student student1 = new Student("a", "a", 2, "a");
-        assert(service.addStudent(student1) == null);
-        studentXMLRepo.delete("a");
-        System.out.println("EC Test 9 completed!");
+        System.out.println("EC Test 6 completed!");
     }
 
     @Test
@@ -192,7 +165,7 @@ public class StudentTest {
         catch (ValidationException v){
             assert(v.getMessage().equals("Email null!"));
         }
-        System.out.println("EC Test 10 completed!");
+        System.out.println("EC Test 7 completed!");
     }
 
     @Test
@@ -206,16 +179,7 @@ public class StudentTest {
         catch (ValidationException v){
             assert(v.getMessage().equals("Email empty!"));
         }
-        System.out.println("EC Test 11 completed!");
-    }
-
-    @Test
-    @Order(12)
-    public void testAddStudentIdUnique(){
-        Student student1 = new Student("a", "a", 2, "a");
-        assert(studentXMLRepo.save(student1) == null);
-        studentXMLRepo.delete("a");
-        System.out.println("EC Test 12 completed!\n");
+        System.out.println("EC Test 8 completed!");
     }
 
     @Order(13)
@@ -231,16 +195,7 @@ public class StudentTest {
             assert(v.getMessage().equals("Existent ID!"));
         }
         studentXMLRepo.delete("a");
-        System.out.println("EC Test 13 completed!\n");
-    }
-
-    @Order(14)
-    @Test
-    public void testAddStudentValidReturnNull(){
-        Student student1 = new Student("a", "a", 2, "a");
-        assert(studentXMLRepo.save(student1) == null);
-        studentXMLRepo.delete("a");
-        System.out.println("EC Test 14 completed!\n");
+        System.out.println("EC Test 9 completed!\n");
     }
 
     @Order(15)
@@ -249,7 +204,7 @@ public class StudentTest {
         Student student1 = new Student("a", "a", 2, "a");
         assert(studentXMLRepo.save(student1) != student1);
         studentXMLRepo.delete("a");
-        System.out.println("EC Test 15 completed!\n");
+        System.out.println("EC Test 10 completed!\n");
     }
 
     @Order(16)
