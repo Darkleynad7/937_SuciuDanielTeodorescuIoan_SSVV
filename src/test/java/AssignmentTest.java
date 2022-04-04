@@ -70,25 +70,95 @@ public class AssignmentTest {
         file.delete();
     }
 
-    @Test
-    @Order(1)
-    public void testAddAssignmentIdValid(){
-        Tema tema = new Tema("a", "a", 2, 1);
-        assert (service.addTema(tema) == null);
-        temaXMLRepo.delete("a");
-        System.out.println("Test nr 1 completed!");
-    }
+
 
     @Test
-    @Order(2)
+    @Order(1)
     public void testAddAssignmentIdNull(){
-        Tema tema = new Tema(null, "a", 2, 1);
+        Tema tema = new Tema(null, "a", 1, 1);
         try {
             service.addTema(tema);
         }
         catch (ValidationException v){
             assert (v.getMessage().equals("Numar tema null!"));
         }
-        System.out.println("Test nr 2 completed!");
+        System.out.println("WBT Test 1 completed!");
+    }
+
+    @Test
+    @Order(2)
+    public void testAddAssignmentIdEmpty(){
+        Tema tema = new Tema("", "a", 1, 1);
+        try {
+            service.addTema(tema);
+        }
+        catch (ValidationException v){
+            assert (v.getMessage().equals("Numar tema invalid!"));
+        }
+        System.out.println("WBT Test 2 completed!");
+    }
+
+    @Test
+    @Order(3)
+    public void testAddAssignmentDescEmpty(){
+        Tema tema = new Tema("a", "", 1, 1);
+        try {
+            service.addTema(tema);
+        }
+        catch (ValidationException v){
+            assert (v.getMessage().equals("Descriere invalida!"));
+        }
+        System.out.println("WBT Test 3 completed!");
+    }
+
+    @Test
+    @Order(4)
+    public void testAddAssignmentDeadlineZero(){
+        Tema tema = new Tema("a", "a", 0, 1);
+        try {
+            service.addTema(tema);
+        }
+        catch (ValidationException v){
+            assert (v.getMessage().equals("Deadlineul trebuie sa fie intre 1-14."));
+        }
+        System.out.println("WBT Test 4 completed!");
+    }
+
+    @Test
+    @Order(5)
+    public void testAddAssignmentPrimireZero(){
+        Tema tema = new Tema("", "a", 1, 0);
+        try {
+            service.addTema(tema);
+        }
+        catch (ValidationException v){
+            assert (v.getMessage().equals("Saptamana primirii trebuie sa fie intre 1-14."));
+        }
+        System.out.println("WBT Test 5 completed!");
+    }
+
+    @Test
+    @Order(6)
+    public void testAddAssignmentIdExistent(){
+        Tema tema = new Tema("a", "a", 1, 1);
+        Tema tema2 = new Tema("a", "b", 2, 2);
+        service.addTema(tema);
+        try{
+            service.addTema(tema2);
+        }
+        catch (ValidationException v){
+            assert (v.getMessage().equals("Existent ID!"));
+        }
+        temaXMLRepo.delete("a");
+        System.out.println("WBT Test 6 completed!");
+    }
+
+    @Test
+    @Order(1)
+    public void testAddAssignmentIdValid(){
+        Tema tema = new Tema("a", "a", 2, 1);
+        assert (service.addTema(tema) == null);
+        temaXMLRepo.delete("a");
+        System.out.println("WBT Test 7 completed!");
     }
 }
