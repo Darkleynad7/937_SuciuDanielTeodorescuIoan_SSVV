@@ -127,11 +127,12 @@ public class AssignmentTest {
     @Test
     @Order(5)
     public void testAddAssignmentPrimireZero(){
-        Tema tema = new Tema("", "a", 1, 0);
+        Tema tema = new Tema("a", "a", 1, 0);
         try {
             service.addTema(tema);
         }
         catch (ValidationException v){
+            System.out.println(v.getMessage());
             assert (v.getMessage().equals("Saptamana primirii trebuie sa fie intre 1-14."));
         }
         System.out.println("WBT Test 5 completed!");
