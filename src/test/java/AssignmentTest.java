@@ -154,7 +154,7 @@ public class AssignmentTest {
     }
 
     @Test
-    @Order(1)
+    @Order(7)
     public void testAddAssignmentIdValid(){
         Tema tema = new Tema("a", "a", 2, 1);
         assert (service.addTema(tema) == null);
