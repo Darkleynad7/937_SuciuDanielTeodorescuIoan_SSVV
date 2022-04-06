@@ -22,3 +22,9 @@ Nota: 10.0
 Predata in saptamana: 2
 Deadline: 2
 Feedback: ok
+
+Tema: a
+Nota: 10.0
+Predata in saptamana: 2
+Deadline: 3
+Feedback: Very very good!

@@ -166,14 +166,12 @@ public class Service {
         Tema tema = temaFileRepository.findOne(nota.getIdTema());
         int predare = calculeazaSPredare(nota.getData());
         System.out.println(predare);
-        if(predare <= tema.getDeadline()){
-            if (predare-tema.getDeadline() == 1){
-                nota.setNota(nota.getNota()-2.5);
-            }
-            else{
-                throw new ValidationException("Studentul nu mai poate preda aceasta tema!");
-            }
-        }
+        System.out.println();
+        if(predare > tema.getDeadline() + 1)
+            throw new ValidationException("Studentul nu mai poate preda aceasta tema!");
+        else if(predare-tema.getDeadline() == 1)
+            nota.setNota(nota.getNota()-2.5);
+
         notaFileRepository.save(nota);
         String filename = "fisiere/" + student.getNume() + ".txt";
         try(BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(filename, true))){
