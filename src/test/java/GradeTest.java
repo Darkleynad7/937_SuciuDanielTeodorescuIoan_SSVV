@@ -24,7 +24,7 @@ import java.time.LocalDate;
 import java.time.ZoneId;
 
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
-public class GradeTesting {
+public class GradeTest {
     private StudentXMLRepo studentXMLRepo;
     private NotaXMLRepo notaXMLRepo;
     private TemaXMLRepo temaXMLRepo;
