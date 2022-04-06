@@ -165,8 +165,6 @@ public class Service {
         Student student = studentFileRepository.findOne(nota.getIdStudent());
         Tema tema = temaFileRepository.findOne(nota.getIdTema());
         int predare = calculeazaSPredare(nota.getData());
-        System.out.println(predare);
-        System.out.println();
         if(predare > tema.getDeadline() + 1)
             throw new ValidationException("Studentul nu mai poate preda aceasta tema!");
         else if(predare-tema.getDeadline() == 1)
