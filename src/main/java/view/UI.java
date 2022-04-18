@@ -6,6 +6,7 @@ import domain.Tema;
 import service.Service;
 import validation.ValidationException;
 
+import java.time.DateTimeException;
 import java.time.LocalDate;
 import java.util.InputMismatchException;
 import java.util.Scanner;
@@ -57,6 +58,9 @@ public class UI {
                 System.out.println("Date introduse gresit!");
             } catch (ArrayIndexOutOfBoundsException exception) {
                 System.out.println("Eroare la introducerea datelor!");
+            }
+            catch (DateTimeException exception){
+                System.out.println("Eroare la introducerea unei date: " + exception.getMessage());
             }
         }
     }
@@ -360,7 +364,7 @@ public class UI {
      * Adauga o nota
      * @throws ValidationException daca nota exista deja
      */
-    private void adaugaNota() throws ValidationException {
+    private void adaugaNota() throws ValidationException, DateTimeException {
         Scanner scanner = new Scanner(System.in);
         System.out.print("Introduceti id student: ");
         String idStudent = scanner.next();
