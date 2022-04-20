@@ -23,7 +23,7 @@ import java.time.LocalDate;
 
 
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
-public class IncrementalIntegration {
+public class IncrementalIntegrationTest {
     private StudentXMLRepo studentXMLRepo;
     private NotaXMLRepo notaXMLRepo;
     private TemaXMLRepo temaXMLRepo;
